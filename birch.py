@@ -94,7 +94,7 @@ def collect_leaf_centroids(node):
         for child in node.children:
             centroids.extend(collect_leaf_centroids(child))
     return centroids
-
+	
 # K-Means Algorithm
 # Function to calculate distance
 def distance(a, b):
@@ -111,7 +111,7 @@ def k_means(data, num_clusters, array_centroids, max_iterations):
           cluster = distances.index(min(distances))
           clusters.append(cluster)
 
-      centroids_new = np.zeros(array_centroids.shape)
+      centroids_new = array_centroids
       for i in range(num_clusters):
           points = [data[j] for j in range(len(data)) if clusters[j] == i]
           centroids_new[i] = np.mean(points, axis=0) if points else array_centroids[i]
@@ -119,4 +119,4 @@ def k_means(data, num_clusters, array_centroids, max_iterations):
       diff = np.linalg.norm(centroids_new - array_centroids)
       array_centroids = centroids_new
       j += 1
-  return clusters
+  return clusters, array_centroids
